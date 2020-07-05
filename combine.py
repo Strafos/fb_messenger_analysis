@@ -6,18 +6,19 @@ def combine_messages(dir):
     # dir = "inbox"
     all_folders = os.listdir(dir)
     for folder in all_folders:
-        if dir.startswith("."): # borrowed Mac fix
+        current_dir = dir + "/" + folder 
+        if folder.startswith("."): # borrowed Mac fix
             continue
-        all_files = os.listdir(dir + "/" + folder)
+        all_files = os.listdir(current_dir)
         if "message.json" in all_files:
             continue # skip if message.json exists
-        dirs = [dir for dir in all_files if dir.startswith("message")] # filter out other files
-        combined = json.loads(open(dir + "/" + folder + "/" + dirs[0], 'r').read())
+        dirs = [dirt for dirt in all_files if dirt.startswith("message")] # filter out other files
+        combined = json.loads(open(current_dir + "/" + dirs[0], 'r').read())
         dirs.remove(dirs[0])
         for dir0 in dirs:
-            json_dir = json.loads(open(dir + "/" + folder + "/" + dir0, 'r').read())
+            json_dir = json.loads(open(current_dir + "/" + dir0, 'r').read())
             combined["messages"] = combined["messages"] + json_dir["messages"]
-        with open(dir + "/" + folder + '/message.json', 'w') as fp:
+        with open(current_dir + '/message.json', 'w') as fp:
             json.dump(combined, fp)
         print("Finished folder " + folder + ", total # of files: " + str(len(combined["messages"])))
 
