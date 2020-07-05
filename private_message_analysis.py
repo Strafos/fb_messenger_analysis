@@ -272,8 +272,8 @@ def count_specific_words(WORDS, path=friends.BEST_FRIEND):
             if ANONYMOUS and sender != friends.MY_NAME:
                 sender = nh.hash_by_name(sender)
             content = message.get("content", "")
-            # if "dick" in content:
-                # print(sender, content)
+            if "dick" in content:
+                print(sender, content)
             count = content.lower().count(keyword)
             counters[keyword][sender] += count
     table = []
@@ -331,12 +331,12 @@ if __name__ == "__main__":
     "Clusters": all messages sent before being interupted by other participant is one cluster
     "Words": Naively defined as length of space separated message
     """
-    # graph_stat(friends.CYNTHIA_CHANG, stat="Characters", period="Day", avg=True)
-    top_n_stat(n=4, stat="Characters", period="Month", show_counts=True)
-    count_links(friends.ALL_FRIEND_PATHS[:20])
-    generate_averages(friends.ALL_FRIEND_PATHS)
-    words = ["lol", "lool", "loool", "lmao", "haha", "hahaha", "hahahaha", "LOL", "um", "good knight", "no", "yes", "hehe", "sorry"]
-    count_specific_words(words, friends.BEST_FRIEND)
-    total_stat_sent(stat="Words", period="Year")
+    graph_stat(friends.BEST_FRIEND, stat="Characters", period="Month", avg=True)
+    # top_n_stat(n=4, stat="Characters", period="Month", show_counts=True)
+    # count_links(friends.ALL_FRIEND_PATHS[:20])
+    # generate_averages(friends.ALL_FRIEND_PATHS)
+    # words = ["lol", "lool", "loool", "lmao", "haha", "hahaha", "hahahaha"]
+    # count_specific_words(words, friends.BEST_FRIEND)
+    # total_stat_sent(stat="Words", period="Year")
 
     plt.show(block=True)
