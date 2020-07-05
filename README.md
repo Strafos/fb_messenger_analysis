@@ -24,6 +24,12 @@ After Facebook processes the request (could take up to a couple hours), unzip th
 
 ## Setup
 
+`combine.py` will combine all the "message_1.json", "message_2.json", etc... into one "message.json" file for `setup.py` to process.
+
+`combine.py` requires one argument:
+
+`--dir`, the root directory (folder) containing all the individual message folders (same as the one for `setup.py`)
+
 `setup.py` will generate `friends.py` which contains paths to relevant message dumps.
 
 `setup.py` requires two arguments: 
@@ -35,7 +41,8 @@ After Facebook processes the request (could take up to a couple hours), unzip th
 My setup looks like this
 
 ```
-python setup.py --dir data --name "Zaibo Wang"
+python combine.py --dir ../inbox
+python setup.py --dir ../inbox --name "Zaibo Wang"
 ```
 
 because my message data directory is in my repository

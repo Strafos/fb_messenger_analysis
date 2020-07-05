@@ -299,7 +299,8 @@ def count_links(paths=friends.ALL_FRIEND_PATHS[:20]):
             content = message.get("content", "")
             num_links = len(re.findall(link_re, content))
             counters[sender] += num_links
-
+        if counters[participant] == 0:
+            continue
         table.append([
             participant,
             counters[friends.MY_NAME]/counters[participant],
@@ -330,8 +331,7 @@ if __name__ == "__main__":
     "Clusters": all messages sent before being interupted by other participant is one cluster
     "Words": Naively defined as length of space separated message
     """
-    graph_stat(friends.JAIDEV_PHADKE, stat="Characters",
-               period="Month", avg=True)
+    graph_stat(friends.BEST_FRIEND, stat="Characters", period="Month", avg=True)
     # top_n_stat(n=4, stat="Characters", period="Month", show_counts=True)
     # count_links(friends.ALL_FRIEND_PATHS[:20])
     # generate_averages(friends.ALL_FRIEND_PATHS)
