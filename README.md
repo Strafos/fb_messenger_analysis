@@ -41,7 +41,8 @@ After Facebook processes the request (could take up to a couple hours), unzip th
 My setup looks like this
 
 ```
-python setup.py --dir data --name "Zaibo Wang"
+python combine.py --dir ../inbox
+python setup.py --dir ../inbox --name "Zaibo Wang"
 ```
 
 because my message data directory is in my repository
